@@ -44,6 +44,6 @@ poly2fit = poly_fit(X, y, deg = 2)
 poly3fit = poly_fit(X, y, deg = 3)
 
 save_model(lin_reg, model_name = 'lin_reg')
-save_model(lin_reg, model_name = 'poly2fit')
-save_model(lin_reg, model_name = 'poly3fit')
+save_model(poly2fit, model_name = 'poly2fit')
+save_model(poly3fit, model_name = 'poly3fit')
 
