@@ -35,4 +35,5 @@ for b in range(B):
 	print('pol3:', rmse(ytrue = y, ypred = p3pred))
 	print()
 
+print()
 
