@@ -56,6 +56,7 @@ print('Avg error:')
 print(dfres.mean(axis = 0))
 
 
+
 if final_plot == 'sim':
 
 	plt.figure(figsize = [10,6])
