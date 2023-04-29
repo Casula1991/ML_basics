@@ -9,6 +9,8 @@ B = int(input('quantos datasets de testes para avaliar? '))
 S = int(input('qual o tamanho de cada dataset? '))
 save_it = input('vc quer salvar os resultados? (sim/nao) ')
 
+final_plot = input('vc quer o grafico no fim? (sim/nao)')
+
 path__ = 'C:\\Users\\Fabio Casula\\OneDrive\\Área de Trabalho\\MyProjects_v2\\ml_basics\\'
 
 lm = pickle.load(open(path__ + "lin_reg.sav",'rb'))
@@ -46,12 +48,24 @@ for b in range(B):
 	print('pol3:', r3)
 	print()
 
-
-
 dfres = pd.DataFrame(np.c_[L1,L2,L3], columns = ['lin_reg','poly2fit','poly3fit'])
 print('df_results head:')
 print(dfres.head())
 print()
 print('Avg error:')
 print(dfres.mean(axis = 0))
+
+
+if final_plot == 'sim':
+
+	plt.figure(figsize = [10,6])
+	plt.hist(L1, bins = 50, label = 'lin_reg')
+	plt.hist(L2, bins = 50, label = 'poly2')
+	plt.hist(L3, bins = 50, label = 'poly3')
+	plt.legend(fontsize = 14)
+	plt.grid()
+
+plt.show()
+
+
 
