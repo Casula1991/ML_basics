@@ -9,9 +9,6 @@ B = int(input('quantos datasets de testes para avaliar? '))
 S = int(input('qual o tamanho de cada dataset? '))
 save_it = input('vc quer salvar os resultados? (sim/nao) ')
 
-print('save_it', save_it)
-
-
 path__ = 'C:\\Users\\Fabio Casula\\OneDrive\\Área de Trabalho\\MyProjects_v2\\ml_basics\\'
 
 lm = pickle.load(open(path__ + "lin_reg.sav",'rb'))
@@ -27,7 +24,9 @@ def rmse(ytrue, ypred):
 	return np.sqrt(((ytrue-ypred)**2).mean())
 
 L1, L2, L3 = [], [], []
-
+print()
+print('Results:')
+print()
 for b in range(B):
 	X, y = ld.get_data(size = S)
 	X = X.reshape(-1,1)
@@ -47,5 +46,12 @@ for b in range(B):
 	print('pol3:', r3)
 	print()
 
-print(L1,L2,L3)
+
+
+dfres = pd.DataFrame(np.c_[L1,L2,L3], columns = ['lin_reg','poly2fit','poly3fit'])
+print('df_results head:')
+print(dfres.head())
+print()
+print('Avg error:')
+print(dfres.mean(axis = 0))
 
