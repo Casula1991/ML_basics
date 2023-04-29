@@ -7,7 +7,10 @@ import pickle
 
 B = int(input('quantos datasets de testes para avaliar? '))
 S = int(input('qual o tamanho de cada dataset? '))
-save_it = input('vc quer salvar os datasets? (sim/nao) ')
+save_it = input('vc quer salvar os resultados? (sim/nao) ')
+
+print('save_it', save_it)
+
 
 path__ = 'C:\\Users\\Fabio Casula\\OneDrive\\Área de Trabalho\\MyProjects_v2\\ml_basics\\'
 
@@ -23,6 +26,8 @@ pol3 = PolynomialFeatures(degree = 3)
 def rmse(ytrue, ypred):
 	return np.sqrt(((ytrue-ypred)**2).mean())
 
+L1, L2, L3 = [], [], []
+
 for b in range(B):
 	X, y = ld.get_data(size = S)
 	X = X.reshape(-1,1)
@@ -30,10 +35,17 @@ for b in range(B):
 	p2pred = p2.predict(pol2.fit_transform(X))
 	p3pred = p3.predict(pol3.fit_transform(X))
 
-	print('lin:', rmse(ytrue = y, ypred = lmpred))
-	print('pol2:', rmse(ytrue = y, ypred = p2pred))
-	print('pol3:', rmse(ytrue = y, ypred = p3pred))
+	r1 = rmse(ytrue = y, ypred = lmpred)
+	r2 = rmse(ytrue = y, ypred = p2pred)
+	r3 = rmse(ytrue = y, ypred = p3pred)
+
+	if save_it == 'sim':
+		L1.append(r1); L2.append(r2); L3.append(r3)
+
+	print('lin:', r1)
+	print('pol2:', r2)
+	print('pol3:', r3)
 	print()
 
-print()
+print(L1,L2,L3)
 
