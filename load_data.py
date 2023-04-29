@@ -13,7 +13,7 @@ def get_data(size):
 	return X, y
 
 def to_dataframe(X,y):
-	df = pd.DataFrame(np.c_[X,y], columns = ['X','y'])
+	df = pd.DataFrame(np.c_[X,y], columns = ['X','target'])
 	return df
 
 def save_df(df, df_name):
